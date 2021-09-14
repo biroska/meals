@@ -11,7 +11,7 @@ class CategoryItem extends StatelessWidget {
     return Container(
       // Padding interno do Box para o texto nao ficar colado na borda do card
       padding: EdgeInsets.all(15),
-      child: Text(this.category.title),
+      child: Text(this.category.title, style: Theme.of(context).textTheme.headline6 ,),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
         gradient: LinearGradient(
