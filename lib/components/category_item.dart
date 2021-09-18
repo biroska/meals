@@ -11,6 +11,7 @@ class CategoryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    // extraido para variavel pois as bordas do inkwell devem coincider com as do container
     final _borderRadius = BorderRadius.circular(15);
 
     // InkWeel recurso de click/tap sobre o container
@@ -37,7 +38,7 @@ class CategoryItem extends StatelessWidget {
   void _selectedCategory( BuildContext context ){
     Navigator.of(context).push( MaterialPageRoute(
         builder: (_){
-          return CategoriesMealsScreen();
+          return CategoriesMealsScreen( category );
         }
     ) );
   }
