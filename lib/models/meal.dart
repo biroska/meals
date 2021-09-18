@@ -1,6 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:meals/models/category.dart';
 
+
+enum Complexity {
+  Simple,
+  Medium,
+  Difficult
+}
+
+enum Cost {
+  Cheap,
+  Fair,
+  Expensive
+}
+
 class Meal {
   final String id;
   final String title;
@@ -34,17 +47,29 @@ class Meal {
         required this.isVegetarian,
         required this.isLactoseFree
       });
+
+  String get complexityText {
+    switch (complexity) {
+      case Complexity.Simple:
+        return 'Simples';
+      case Complexity.Medium:
+        return 'Normal';
+      case Complexity.Difficult:
+        return 'Difícil';
+      default:
+        return 'Desconhecida';
+    }
+  }
+
+  String get costText{
+    switch( cost ){
+      case Cost.Cheap: return 'Barato';
+      case Cost.Fair: return 'Justo';
+      case Cost.Expensive: return 'Caro';
+      default: return 'Desconhecido';
+    }
+  }
+
 }
 
-enum Complexity {
-  Simple,
-  Medium,
-  Difficult
-}
-
-enum Cost {
-  Cheap,
-  Fair,
-  Expensive
-}
 
