@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:meals/utils/app_routes.dart';
 
 class MainDrawer extends StatelessWidget {
 
-  Widget _createItem(IconData icon, String label){
+  // Recebendo uma funcao como parametro ><
+  Widget _createItem(IconData icon, String label, Function() onTap ){
 
     return ListTile(
       leading: Icon(
@@ -14,7 +16,7 @@ class MainDrawer extends StatelessWidget {
         fontSize: 24,
         fontWeight: FontWeight.bold
       ),),
-      onTap: (){},
+      onTap: onTap,
     );
   }
 
@@ -37,8 +39,9 @@ class MainDrawer extends StatelessWidget {
               ),),
             ),
             const SizedBox(height: 20,),
-            _createItem( Icons.restaurant, 'Refeições' ),
-            _createItem( Icons.settings, 'configurações')
+            // Navigator.of(context).pushReplacementNamed evita que a mesma screen seja incluida repetidamente na pilha
+            _createItem( Icons.restaurant, 'Refeições', () => Navigator.of(context).pushReplacementNamed(AppRoutes.HOME)  ),
+            _createItem( Icons.settings, 'configurações', () => Navigator.of(context).pushReplacementNamed(AppRoutes.SETTINGS) )
           ]
       ),
     );
