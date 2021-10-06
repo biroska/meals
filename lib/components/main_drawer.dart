@@ -39,7 +39,7 @@ class MainDrawer extends StatelessWidget {
               ),),
             ),
             const SizedBox(height: 20,),
-            // Navigator.of(context).pushReplacementNamed evita que a mesma screen seja incluida repetidamente na pilha
+            // Navigator.of(context).pushReplacementNamed evita que a mesma screen seja incluida repetidamente; na pilha
             _createItem( Icons.restaurant, 'Refeições', () => Navigator.of(context).pushReplacementNamed(AppRoutes.HOME)  ),
             _createItem( Icons.settings, 'configurações', () => Navigator.of(context).pushReplacementNamed(AppRoutes.SETTINGS) )
           ]
