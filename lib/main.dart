@@ -18,9 +18,14 @@ class MealsApp extends StatefulWidget {
 
 class _MealsAppState extends State<MealsApp> {
 
+  Settings settings = Settings();
+
   List<Meal> _availableMeals = DUMMY_MEALS;
 
   void _filterMeals( Settings settings ){
+
+    this.settings = settings;
+
     setState(() {
       _availableMeals = DUMMY_MEALS.where( (meal) {
         final filterVegan = settings.isVegan && !meal.isVegan;
@@ -40,8 +45,8 @@ class _MealsAppState extends State<MealsApp> {
         theme: ThemeData(
             primarySwatch: Colors.pink,
             // accentColor: Colors.amber,
-            colorScheme: ColorScheme.light().copyWith(secondary: Colors.amber),
-            canvasColor: Color.fromRGBO(255, 254, 229, 1),
+            colorScheme: const ColorScheme.light().copyWith(secondary: Colors.amber),
+            canvasColor: const Color.fromRGBO(255, 254, 229, 1),
             fontFamily: 'Raleway',
             textTheme: ThemeData.light().textTheme.copyWith(
                 headline6:
@@ -50,7 +55,7 @@ class _MealsAppState extends State<MealsApp> {
           AppRoutes.HOME: (context) => TabsScreen(),
           AppRoutes.CATEGORIES_MEALS: (context) => CategoriesMealsScreen( _availableMeals ),
           AppRoutes.MEAL_DETAIL: (context) => MealDetailScreen(),
-          AppRoutes.SETTINGS: (context) => SettingsScreen( _filterMeals ),
+          AppRoutes.SETTINGS: (context) => SettingsScreen( settings, _filterMeals ),
         },
         // onGenerateRoute: (settings) {
         //   if ( settings.name == '/alguma-coisa' ){
