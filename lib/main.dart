@@ -21,6 +21,7 @@ class _MealsAppState extends State<MealsApp> {
   Settings settings = Settings();
 
   List<Meal> _availableMeals = DUMMY_MEALS;
+  List<Meal> _favoriteMeals = [];
 
   void _filterMeals( Settings settings ){
 
@@ -38,6 +39,16 @@ class _MealsAppState extends State<MealsApp> {
     });
   }
 
+  void _toggleFavorite( Meal meal){
+    setState(() {
+      _favoriteMeals.contains( meal ) ? _favoriteMeals.remove( meal ) : _favoriteMeals.add( meal );
+    });
+  }
+
+  bool _isFavorite( Meal meal ){
+    return _favoriteMeals.contains( meal );
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -52,9 +63,9 @@ class _MealsAppState extends State<MealsApp> {
                 headline6:
                     const TextStyle(fontSize: 20, fontFamily: 'RobotoCondensed'))),
         routes: {
-          AppRoutes.HOME: (context) => TabsScreen(),
+          AppRoutes.HOME: (context) => TabsScreen( _favoriteMeals ),
           AppRoutes.CATEGORIES_MEALS: (context) => CategoriesMealsScreen( _availableMeals ),
-          AppRoutes.MEAL_DETAIL: (context) => MealDetailScreen(),
+          AppRoutes.MEAL_DETAIL: (context) => MealDetailScreen( _isFavorite, _toggleFavorite ),
           AppRoutes.SETTINGS: (context) => SettingsScreen( settings, _filterMeals ),
         },
         // onGenerateRoute: (settings) {
